@@ -9,6 +9,12 @@ dist/
 web-build/
 expo-env.d.ts
 
+# Hidden Data
+data/a320/
+data/pay/
+data/wb
+assets/docs/
+
 # Native
 .kotlin/
 *.orig.*
