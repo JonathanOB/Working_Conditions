@@ -14,8 +14,8 @@ Two fleet profiles, switchable at any time in Settings:
 
 | Fleet | Working Conditions |
 |---|---|
-| A330 Widebody | WC 2025 (signed 10/09/2025) |
-| A320/321/(Neo) Narrowbody | WC May 2018 |
+| Widebody | Latest Document 2025 |
+| Narrowbody | Latest Document 2018 |
 
 All calculators and the rules browser update automatically on fleet switch.
 
