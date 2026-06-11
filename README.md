@@ -4,6 +4,15 @@ An unofficial reference tool for Air ******* pilots covering EASA ORO.FTL flight
 
 > **Disclaimer:** This app is an unofficial reference tool for informational purposes only. It is not a substitute for the official Working Conditions agreements, EASA ORO.FTL regulations, or advice from (union). Always verify against the current official documents. In the event of any discrepancy between this app and the official documents, the official documents prevail.
 
+#### ***Withheld For Privacy***
+Assets/docs/widebody.pdf 
+Assets/docs/narrowbody.pdf 
+Data/narrowbody/working-conditions.json
+Data/widebody/working-conditions.json
+Data/widebody/destinations.json
+Data/widebody/easa-ftl.json
+Data/pay/pay.json
+
 ---
 
 ## Features
