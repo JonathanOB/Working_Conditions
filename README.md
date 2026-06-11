@@ -1,8 +1,8 @@
 # PilotRules
 
-An unofficial reference tool for Aer Lingus pilots covering EASA ORO.FTL flight time limitations and fleet-specific Working Conditions agreements. Built as a mobile-first React Native app using Expo.
+An unofficial reference tool for Air ******* pilots covering EASA ORO.FTL flight time limitations and fleet-specific Working Conditions agreements. Built as a mobile-first React Native app using Expo.
 
-> **Disclaimer:** This app is an unofficial reference tool for informational purposes only. It is not a substitute for the official Working Conditions agreements, EASA ORO.FTL regulations, or advice from IALPA. Always verify against the current official documents. In the event of any discrepancy between this app and the official documents, the official documents prevail.
+> **Disclaimer:** This app is an unofficial reference tool for informational purposes only. It is not a substitute for the official Working Conditions agreements, EASA ORO.FTL regulations, or advice from (union). Always verify against the current official documents. In the event of any discrepancy between this app and the official documents, the official documents prevail.
 
 ---
 
@@ -76,8 +76,8 @@ hooks/            # useFleet, useCoefficient, useBookmarks, useSearch
 ## Regulatory Basis
 
 - **EASA:** Commission Regulation (EU) No 965/2012 as amended by (EU) No 83/2014 — Annex III (ORO), Subpart FTL
-- **Widebody WC:** Aer Lingus / IALPA A330 Working Conditions 2025
-- **Narrowbody WC:** Aer Lingus / IALPA A320/321/(Neo) Working Conditions May 2018
+- **Widebody WC:** Air ******* / Union Widebody Working Conditions
+- **Narrowbody WC:** Air ******* / Union Narrowbody Working Conditions
 
 Calculations implement the binding limit as `min(EASA maximum, WC maximum)` — the more restrictive of the two always applies.
 
