@@ -1,50 +1,99 @@
-# Welcome to your Expo app 👋
+# PilotRules
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+An unofficial reference tool for Aer Lingus pilots covering EASA ORO.FTL flight time limitations and fleet-specific Working Conditions agreements. Built as a mobile-first React Native app using Expo.
 
-## Get started
+> **Disclaimer:** This app is an unofficial reference tool for informational purposes only. It is not a substitute for the official Working Conditions agreements, EASA ORO.FTL regulations, or advice from IALPA. Always verify against the current official documents. In the event of any discrepancy between this app and the official documents, the official documents prevail.
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## Features
 
-2. Start the app
+### Fleet Support
 
-   ```bash
-   npx expo start
-   ```
+Two fleet profiles, switchable at any time in Settings:
 
-In the output, you'll find options to open the app in a
+| Fleet | Working Conditions |
+|---|---|
+| A330 Widebody | WC 2025 (signed 10/09/2025) |
+| A320/321/(Neo) Narrowbody | WC May 2018 |
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+All calculators and the rules browser update automatically on fleet switch.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Calculators
 
-## Get a fresh project
+| Calculator | Description |
+|---|---|
+| **FDP** | Maximum flight duty period from report time, sectors, duty type, and rest facility. Computes the binding limit from `min(EASA, WC)` with full clause references. |
+| **Rest** | Minimum rest periods for all scenario types — pre-duty, post-duty, outstation turnarounds, standby. Shows EASA floor and WC requirement separately. |
+| **Standby Decoder** | Decodes STBH, STBA, STBB, and K-duty standby. Given a standby start, call time, and report time, automatically calculates the max FDP (no manual entry required), FDP credit consumed, remaining FDP, and latest finish time. |
+| **Delay** | Disruption impact calculator. Determines effective FDP start time after a delay, maximum FDP ceiling, and any compensation entitlements. |
+| **Days Off** | Days off entitlement and coefficient bank credit for widebody destinations, including west coast, Florida, and South Africa rules. |
+| **Route** | Destination lookup for widebody-specific rest and days-off rules. |
+| **Coefficient** | Running coefficient bank balance tracker across the roster year. |
+| **OWC** | Outside Working Conditions payment calculator — free days, gash days, agreed duties, and short rest infringements. |
+| **Performance Pay** | Three-tab calculator (13 Roster Periods · Yearly Total · Quick Check). Automatically takes the greater of the roster-period and annual calculation methods. |
 
-When you're ready, run:
+### Rules Browser
 
-```bash
-npm run reset-project
+Full searchable browser of EASA ORO.FTL and fleet Working Conditions clauses, navigable by section, topic, or regulation source. Individual clauses are bookmarkable and deep-linkable from calculators.
+
+### Documents
+
+In-app PDF viewer for the Working Conditions agreements, with bookmarks to key sections.
+
+---
+
+## Tech Stack
+
+- **Framework:** [Expo](https://expo.dev) SDK 54 (managed workflow)
+- **Navigation:** expo-router v6 (file-based)
+- **Language:** TypeScript (strict)
+- **State:** Zustand
+- **Search:** Fuse.js
+- **UI:** React Native (no UI library — all custom components)
+
+---
+
+## Project Structure
+
+```
+app/
+  (tabs)/         # Bottom tab screens (Home, Calculators, Rules, Document, Settings)
+  calculators/    # Individual calculator screens
+  rule/           # Deep-linked rule detail screen
+lib/
+  calculators-easa.ts   # EASA ORO.FTL shared logic (Table B FDP, rest minima, WOCL)
+  calculators-wb.ts     # A330 widebody calculator logic
+  calculators-a320.ts   # A320 narrowbody calculator logic
+  fleet.ts              # Fleet type definitions and labels
+  search.ts             # Fuse.js search index
+components/       # Shared UI components (FleetBadge, SectionHeader, TimePicker, …)
+hooks/            # useFleet, useCoefficient, useBookmarks, useSearch
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## Regulatory Basis
 
-To learn more about developing your project with Expo, look at the following resources:
+- **EASA:** Commission Regulation (EU) No 965/2012 as amended by (EU) No 83/2014 — Annex III (ORO), Subpart FTL
+- **Widebody WC:** Aer Lingus / IALPA A330 Working Conditions 2025
+- **Narrowbody WC:** Aer Lingus / IALPA A320/321/(Neo) Working Conditions May 2018
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Calculations implement the binding limit as `min(EASA maximum, WC maximum)` — the more restrictive of the two always applies.
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+## Getting Started
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+npm install
+npx expo start
+```
+
+Requires Node 18+ and the Expo Go app or a local simulator.
+
+---
+
+## License
+
+Private — not for distribution.
